@@ -10,11 +10,10 @@ function App() {
   return (
     <div>
       <Menu/>
-
       <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
         url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription={"Como você estará daqui à 5 anos?"}
+        videoDescription={"Se você quer ser bem sucedido, precisa ter dedicação total, buscar seu último limite e dar o melhor de si - 'Ayrton Senna'"}
       />
 
       <Carousel
