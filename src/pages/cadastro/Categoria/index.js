@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PageRoot from '../../../components/PageRoot';
 import { Link } from 'react-router-dom';
-
+import FormField from '../../../components/FormField';
 
 
 function CadastroCategoria(){
@@ -17,8 +17,6 @@ function CadastroCategoria(){
  
 
   function setValue(key, value){
-    console.log(key);
-    console.log(value);
 
     setValues({
       ...values,
@@ -27,8 +25,9 @@ function CadastroCategoria(){
   }
   function handleChange(infoEvent){
     const { getAttribute, value} = infoEvent.target;
+    const getTheAttribute = getTheAttribute.bind(infoEvent.target);
     setValue(
-      getAttribute('name'),
+      getTheAttribute('name'),
       value
       );
   }
@@ -47,18 +46,14 @@ function CadastroCategoria(){
           setValues(initialValues)
         }}>
 
+          <FormField 
+            label="Nome da Categoria"
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={handleChange}
+          />
 
-          <div>
-          <label>
-            Nome da Categoria:
-            <input 
-              type="text"
-              value={values['name']}
-              onChange={handleChange}
-              name="name"
-            />
-          </label>
-          </div>
           <div>
           <label>
             Descrição:
@@ -70,7 +65,16 @@ function CadastroCategoria(){
             />
           </label>
           </div>
-          <div>
+
+          <FormField 
+            label="Cor da Categoria"
+            type="color"
+            name="color"
+            value={values.color}
+            onChange={handleChange}
+          />
+
+          {/*<div>
           <label>
             Cor:
             <input 
@@ -80,8 +84,8 @@ function CadastroCategoria(){
               name="color"
             />
           </label>
+          </div>*/}
 
-          </div>
           <button>
             Cadastrar
           </button>
