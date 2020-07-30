@@ -5,40 +5,49 @@ import { Link } from 'react-router-dom';
 
 
 function CadastroCategoria(){
-  const [categorias, setCategorias] = useState(['Teste']);
- 
   const initialValues = {
-    name:'Categorial Inicial',
-    description:'Descrição Inicial',
-    color:'#000',
-    
+    name:'',
+    description:'',
+    color:'', 
   }
- 
+
+  const [categorias, setCategorias] = useState([]);
   const [values, setValues] = useState(initialValues);
+ 
+ 
 
   function setValue(key, value){
+    console.log(key);
+    console.log(value);
+
     setValues({
       ...values,
       [key]: value,
     })
   }
   function handleChange(infoEvent){
+    const { getAttribute, value} = infoEvent.target;
     setValue(
-      infoEvent.target.getAttribute('name'),
-      infoEvent.target.value
+      getAttribute('name'),
+      value
       );
   }
 
     return (
       <PageRoot>
         <h1>Cadastro de Categoria: {values.name}</h1>
+        
         <form onSubmit={function handleSubmit(infoEvent){
           infoEvent.preventDefault();
           setCategorias([
             ...categorias,
             values
           ]);
+
+          setValues(initialValues)
         }}>
+
+
           <div>
           <label>
             Nome da Categoria:
@@ -81,7 +90,7 @@ function CadastroCategoria(){
           {categorias.map((categoria, index) => {
             return (
               <li key={`${categoria.id}${index}`}>
-                {categoria}
+                {categoria.name}
               </li>
             )
           })}
